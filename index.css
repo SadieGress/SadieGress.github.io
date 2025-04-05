@@ -82,7 +82,7 @@ body {
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: blue;
+    background-color: rgba(24, 24, 214, 1);
     overflow: scroll;
 }
 
