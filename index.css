@@ -6,6 +6,20 @@
 
 h1 {
     font-size: 28;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 body {
@@ -50,11 +64,11 @@ body {
 #terminal {
     height:100%;
     width: 48%;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20px;
     background-color: rgb(29, 29, 29);
-    display: inline-block;
-    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #aboutads {
@@ -90,4 +104,19 @@ body {
     height: 100%;
     width: 40%;
     background-color: darkmagenta;
+}
+
+#terminalbox {
+    background-color: rgb(18, 18, 18);
+    display: flex;
+    align-items: center;
+}
+
+#terminalsearch {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    color: aquamarine;
+    background: none;
+    padding: 0;
 }
