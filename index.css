@@ -1,64 +1,93 @@
 * {
     font-family: monospace;
     box-sizing: border-box;
+    font-size: 15;
 }
 
-pre {
-    font-size: 14px;
+h1 {
+    font-size: 28;
 }
 
 body {
     background-image: url("images/bg.png");
+    color: aquamarine;
+    background-color: black;
     background-size: auto;
     margin: 0px;
+}
+
+.curl {
+    font-size: 24;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: red;
+}
+
+#headerandmain {
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
-#banner {
-    padding: 10px;
-    padding-left: 40px;
-    padding-right: 40px;
+#header {
+    height: 12.5%;
+    background-color: rgba(5, 7, 7, 0.5);
+    padding-left: 30px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: rgba(9, 9, 9, 0.5);
-    color:aquamarine;
 }
 
-.parent {
-    display: grid;
-    grid-template-columns: 1fr 0.6fr 0.4fr;
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-    height: calc(100vh - 86px);
-    padding: 30px;
+#termabout {
+    width: 100%;
+    height: 85%;
+    padding-top: 20px; padding-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.terminal { 
-    grid-area: 1 / 1 / 3 / 2; 
+#terminal {
+    height:100%;
+    width: 48%;
+    padding-left: 20px;
+    padding-right: 20px;
     background-color: rgb(29, 29, 29);
-    padding: 10px;
-    color: aquamarine;
+    display: inline-block;
+    overflow: scroll;
 }
 
-.about { 
-    grid-area: 1 / 2 / 2 / 4; 
+#aboutads {
+    height: 100%;
+    width: 48%;
+    display: inline-block;
+}
+
+#about {
+    height: 60%;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
     background-color: blue;
-    padding: 10px;
-    color: aquamarine;
+    overflow: scroll;
 }
 
-.pear {
-    grid-area: 2 / 2 / 3 / 3;
-    background-image: url("images/pearfloat.gif");
-    background-size: 100% 100%;
+#ads {
+    height: 40%;
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-.heal {
-    grid-area: 2 / 3 / 3 / 4;
-    background-image: url("images/healing.png");
-    background-size: 100% 100%;
+#pear {
+    height: 100%;
+    width: 60%;
+    padding-right: 20px;
+}
+
+#monk {
+    height: 100%;
+    width: 40%;
+    background-color: darkmagenta;
 }
