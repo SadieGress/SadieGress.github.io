@@ -1,34 +1,7 @@
-function loadTerminal(textBox) {
-    textBox.innerHTML = `
-    <br>
-    Welcome to Kittmaus.rip! Feel free to visit any of the following links:<br><br>
-    <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[ART]</a><br>
-    <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[MEDIA BLOG]</a><br>
-    <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[WRITING]</a><br>
-    <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[FISHING MINIGAME]</a><br><br>
-    Or use the search bar below.<br>
-    (Type "help" for commands!)<br><br>
-    ==========------------------------------------------------==========<br>
-    `;
-}
-
-function cowSay(text, textBox) {
-    if (text.length === 0) text = "...";
-    textBox.innerHTML += `
-    <pre>
-      ${"=".repeat(text.length)}
-    | ${text} |
-      ${"=".repeat(text.length)}
-           \\
-            \\
-              ^__^
-              (oo)\\_______
-              (__)\\       )\\/\\
-                  ||----w |
-                  ||     ||</pre>`
-}
+import { loadTerminal, cowSay, version, changelog, helptext } from "./terminalCommands.js";
 
 function useTerminal(text, textBox) {
+    const cowsayLength = text.length > 7 ? text.length - 7 : 0;
     const escapedText = escapeHtml(text);
     pushToTerminal("KM:\\Kittmaus\\Home> " + escapedText, textBox)
 
@@ -36,7 +9,7 @@ function useTerminal(text, textBox) {
 
     switch(query[0].toLowerCase()) {
         case "help":
-            pushToTerminal("<strong>Commands</strong>:<br>help: shows this text.<br>clear: clear the terminal.<br>reset: reset terminal to initial display.<br>version: show current site version (with changelogs).<br>cowsay &lt;text&gt;: moo!", textBox)
+            pushToTerminal(helptext(), textBox)
             break;
         case "clear":
             textBox.innerHTML = ``;
@@ -46,10 +19,13 @@ function useTerminal(text, textBox) {
             break;
         case "cowsay":
             query.splice(0,1);
-            cowSay(query.join(" "), textBox);
+            cowSay(query.join(" "), textBox, cowsayLength);
             break;
         case "version":
-            pushToTerminal("<strong>Version 1.01</strong><br>----------------------------------------------<br>- Terminal scrolling/text entry<br>- help, clear, reset, version, and cowsay commands.<br>----------------------------------------------", textBox);
+            pushToTerminal(version(query[1]), textBox);
+            break;
+        case "changelog":
+            pushToTerminal(changelog(), textBox);
             break;
     }
     textBox.scrollTop = textBox.scrollHeight;
@@ -68,14 +44,36 @@ function pushToTerminal(text, textBox) {
     textBox.innerHTML += `<br>${text}<br>`;
 } 
 
+let commandHistory = [];
+let historyIndex = -1;
+
 window.onload = function () {
     const terminalText = document.getElementById("terminalText");
     loadTerminal(terminalText);
     const terminalSearch = document.getElementById("terminalsearch")
     terminalSearch.addEventListener("keydown", function(event) {
+        console.log(historyIndex);
         if (event.key == "Enter") {
-            useTerminal(terminalSearch.value.trim(), terminalText);
+            const searchText = terminalSearch.value.trim();
+            commandHistory.push(searchText);
+            historyIndex = commandHistory.length;
+            useTerminal(searchText, terminalText);
             terminalSearch.value = "";
+        } else if (event.key == "ArrowUp") {
+            if (historyIndex > 0) {
+                historyIndex--;
+                terminalSearch.value = commandHistory[historyIndex];
+            }
+            event.preventDefault();
+        } else if (event.key == "ArrowDown") {
+            if (historyIndex < commandHistory.length - 1) {
+                historyIndex++;
+                terminalSearch.value = commandHistory[historyIndex];
+            } else {
+                historyIndex = commandHistory.length;
+                terminalSearch.value = "";
+            }
+            event.preventDefault();
         }
     });
 }
