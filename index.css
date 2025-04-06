@@ -106,6 +106,12 @@ body {
     background-color: darkmagenta;
 }
 
+#terminalText {
+    height:85%; 
+    background-color: rgb(18,18,18); 
+    overflow: scroll;
+}
+
 #terminalbox {
     background-color: rgb(18, 18, 18);
     display: flex;

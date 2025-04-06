@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="index.css">
     <title>Welcome to Kittmaus.rip!</title>
     <link rel="icon" type="image/x-icon" href="images/vlonesaka.jpg">
+    <script type="module" src="index.js"></script>
 
     <meta property="og:site_name" content="kittmaus.rip">
     <meta property="og:url" content="https://kittmaus.rip">
@@ -13,6 +14,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="688">
 </head>
+
 <body>
     <div id="headerandmain">
         <div id="header">
@@ -21,21 +23,9 @@
         <div id="termabout">
             <div id="terminal">
                 <h1>Terminal</h1>
-                <p style="height:85%; background-color: rgb(18,18,18); overflow: scroll;">
-                    This isn't a real, interactable terminal (obviously)<br><br>
-                    This will eventually be a search bar, though!<br>
-                    You'll be able to navigate by clicking links or by typing them in.<br><br>
-                    An example of what this might look like will be written out below.<br><br>
-                    ==========------------------------------------------------==========<br><br>
-                    Welcome to Kittmaus.rip! Feel free to visit any of the following links:<br><br>
-                    <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[ART]</a><br>
-                    <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[MEDIA BLOG]</a><br>
-                    <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[WRITING]</a><br>
-                    <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[FISHING MINIGAME]</a><br><br>
-                    Or use the search bar below.
-                </p>
+                <p id="terminalText"><!--text goes here--></p>
                 <div id="terminalbox">
-                    <p>KM:\Rip\Kittmaus\Home>&nbsp;</p>
+                    <p>KM:\Kittmaus\Home>&nbsp;</p>
                     <input type="search" id="terminalsearch">
                 </div>
             </div>
