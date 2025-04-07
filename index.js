@@ -7,30 +7,17 @@ function useTerminal(text, textBox) {
 
     const query = escapedText.split(" ");
 
-    switch(query[0].toLowerCase()) {
-        case "help":
-            pushToTerminal(helptext(), textBox)
-            break;
-        case "clear":
-            textBox.innerHTML = ``;
-            break;
-        case "reset":
-            loadTerminal(textBox);
-            break;
-        case "cowsay":
-            query.splice(0,1);
-            cowSay(query.join(" "), textBox, cowsayLength);
-            break;
-        case "version":
-            pushToTerminal(version(query[1]), textBox);
-            break;
-        case "changelog":
-            pushToTerminal(changelog(), textBox);
-            break;
-        case "setcolor":
-            setColor(query[1], query[2], query[3]);
-            break;
+    const searchMap = {
+        "help": () => pushToTerminal(helptext(), textBox),
+        "clear": () => textBox.innerHTML = ``,
+        "reset": () => loadTerminal(textBox),
+        "cowsay": () => cowSay(query, textBox, cowsayLength),
+        "version": () => pushToTerminal(version(query[1]), textBox),
+        "changelog": () => pushToTerminal(changelog(), textBox),
+        "setcolor": () => setColor(query[1], query[2], query[3])
     }
+    
+    searchMap[query[0].toLowerCase()]();
     textBox.scrollTop = textBox.scrollHeight;
 }
 
@@ -41,7 +28,7 @@ function escapeHtml(unsafe) {
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
-  }
+}
 
 function pushToTerminal(text, textBox) {
     textBox.innerHTML += `<br>${text}<br>`;
@@ -55,7 +42,6 @@ window.onload = function () {
     loadTerminal(terminalText);
     const terminalSearch = document.getElementById("terminalsearch")
     terminalSearch.addEventListener("keydown", function(event) {
-        console.log(historyIndex);
         if (event.key == "Enter") {
             const searchText = terminalSearch.value.trim();
             commandHistory.push(searchText);

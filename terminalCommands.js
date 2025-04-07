@@ -2,7 +2,7 @@ export function loadTerminal(textBox) {
     textBox.innerHTML = `
     <br>
     Welcome to Kittmaus.rip! Feel free to visit any of the following links:<br><br>
-    <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[ART]</a><br>
+    <a href="/art">[ART]</a><br>
     <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[MEDIA BLOG]</a><br>
     <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[WRITING]</a><br>
     <a href="https://www.youtube.com/watch?v=i1-kt7fyl84" target="_blank">[FISHING MINIGAME]</a><br><br>
@@ -13,6 +13,8 @@ export function loadTerminal(textBox) {
 }
 
 export function cowSay(text, textBox, cowsayLength) {
+    text.splice(0,1)
+    text = text.join(" ")
     if (text.length === 0) text = "...";
     textBox.innerHTML += `
     <pre>
