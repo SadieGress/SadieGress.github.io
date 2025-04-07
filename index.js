@@ -1,4 +1,4 @@
-import { loadTerminal, cowSay, version, changelog, helptext } from "./terminalCommands.js";
+import { loadTerminal, cowSay, version, changelog, helptext, setColor } from "./terminalCommands.js";
 
 function useTerminal(text, textBox) {
     const cowsayLength = text.length > 7 ? text.length - 7 : 0;
@@ -26,6 +26,9 @@ function useTerminal(text, textBox) {
             break;
         case "changelog":
             pushToTerminal(changelog(), textBox);
+            break;
+        case "setcolor":
+            setColor(query[1], query[2], query[3]);
             break;
     }
     textBox.scrollTop = textBox.scrollHeight;

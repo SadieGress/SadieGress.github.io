@@ -29,6 +29,10 @@ export function cowSay(text, textBox, cowsayLength) {
 }
 
 let versionMap = {
+    "1.0.3":`
+    - Updated about background/text colors<br>
+    - setcolor command<br>
+    - Added an awesome easter egg ;)`,
     "1.0.2":`
     - Specific version search<br>
     - Changelog (and command)<br>
@@ -64,13 +68,24 @@ export function changelog() {
     return output;
 }
 
+export function setColor(r="127", g="255", b="212"){
+    if (r === "awesome") {
+        document.body.style.animation = `rainbow 6s linear 0s infinite`;
+    }
+    if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255){
+        document.body.style.animation = "none";
+        document.body.style.color = `rgb(${r}, ${g}, ${b})`;
+    }
+}
+
 export function helptext() {
     return `<strong>Commands</strong>:<br>
     help: shows this text.<br>
     clear: clear the terminal.<br>
     reset: reset terminal to initial display.<br>
     version [version]: show current or specific site version.<br>
-    changelog: show site version history.<br>
-    cowsay [text]: moo!
+    changelog: show site version history.<br><br>
+    cowsay [text]: moo!<br>
+    setcolor [r g b]: sets site font color.
     `
 }
